@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { format, setHours, setMinutes } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
-import SelectHeader from './SelectHeader/SelectHeader';
-import DaysHeader from './DaysHeader/DaysHeader';
-import DaysView from './DaysView/DaysView';
 
 const useStyles = makeStyles({
   root: {
@@ -35,18 +32,7 @@ export default function DatePicker(props: PropsI): JSX.Element {
 
   return (
     <>
-      <input readOnly value={inputValue ? format(inputValue, 'yyyy/MM/dd HH:mm') : ''} />
-
-      <SelectHeader
-        viewValue={viewValue}
-        setViewValue={setViewValue}
-        locale={locale}
-      />
-      <DaysHeader locale={locale} />
-      <DaysView
-        viewValue={viewValue}
-        setInputValue={setInputValue}
-      />
+      <input readOnly value={inputValue ? format(inputValue, 'HH:mm') : ''} />
 
       <div>
         <input
