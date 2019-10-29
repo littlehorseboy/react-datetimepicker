@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
+import { format, setDate } from 'date-fns';
 /* eslint-disable import/no-extraneous-dependencies */
 import { render, waitForElement, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -78,4 +78,18 @@ test('點擊切換上個月份的按鈕 2 次，下拉選單的月份會是現�
   const node = await waitForElement(() => getByTestId('selectheadermonth-select'));
 
   expect(node).toHaveValue((new Date().getMonth() - 2).toString());
+});
+
+test('點擊本月的第 3 個按鈕，檢查 value 的日期是否成功改變為 3', async () => {
+  const { getByTestId, getAllByTestId } = render(<DateTimePicker value={new Date()} />);
+
+  const input = await waitForElement(() => getByTestId('datetimepicker-input'));
+
+  fireEvent.click(input);
+
+  const btns = await waitForElement(() => getAllByTestId('daysview-btn'));
+
+  fireEvent.click(btns[2]);
+
+  expect(input).toHaveValue(format(setDate(new Date(), 3), 'yyyy/MM/dd HH:mm'));
 });

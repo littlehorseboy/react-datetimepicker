@@ -53,6 +53,7 @@ export default function DaysView(props: PropsI): JSX.Element {
                   type="button"
                   className={classes.day}
                   onClick={(): void => handleClick(day)}
+                  data-testid="daysview-btn"
                 >
                   {day.getDate()}
                 </button>
