@@ -29,6 +29,7 @@ export default function DaysView(props: PropsI): JSX.Element {
   const monthDays = [...new Array(endOfMonthDay)]
     .map((value, index): Date => new Date(
       viewValue.getFullYear(), viewValue.getMonth(), index + 1,
+      viewValue.getHours(), viewValue.getMinutes(),
     ));
 
   const monthDaysFillUpForWeek = ([...new Array(monthDays[0].getDay())] as (null | Date)[])

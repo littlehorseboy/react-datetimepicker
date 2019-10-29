@@ -6,9 +6,12 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import SelectHeaderMonth from './SelectHeaderMonth/SelectHeaderMonth';
 
 const useStyles = makeStyles({
-  dayLabel: {
-    display: 'inline-block',
-    width: 100,
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  numberInput: {
+    maxWidth: 60,
   },
 });
 
@@ -36,12 +39,17 @@ export default function SelectHeader(props: PropsI): JSX.Element {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <button type="button" onClick={handleClickSubMonths}>
         <ArrowLeftIcon />
       </button>
 
-      <input type="number" value={viewValue.getFullYear()} onChange={handleChangeYear} />
+      <input
+        type="number"
+        className={classes.numberInput}
+        value={viewValue.getFullYear()}
+        onChange={handleChangeYear}
+      />
 
       <SelectHeaderMonth
         viewValue={viewValue}
