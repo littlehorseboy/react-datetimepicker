@@ -3,9 +3,8 @@ import { startOfYear, addMonths, setMonth } from 'date-fns';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  dayLabel: {
-    display: 'inline-block',
-    width: 100,
+  select: {
+    width: '100%',
   },
 });
 
@@ -33,7 +32,12 @@ export default function SelectHeader(props: PropsI): JSX.Element {
   };
 
   return (
-    <select value={viewValue.getMonth()} onChange={handleChangeMonth}>
+    <select
+      className={classes.select}
+      value={viewValue.getMonth()}
+      onChange={handleChangeMonth}
+      data-testid="selectheadermonth-select"
+    >
       {monthNames.map((option) => (
         <option key={option.value} value={option.value}>{option.label}</option>
       ))}

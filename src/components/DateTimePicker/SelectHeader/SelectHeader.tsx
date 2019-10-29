@@ -9,9 +9,18 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     justifyContent: 'space-between',
+    width: 280,
+  },
+  arrowButton: {
+    border: 'none',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#f64747',
+    },
   },
   numberInput: {
-    maxWidth: 60,
+    width: '100%',
   },
 });
 
@@ -40,7 +49,12 @@ export default function SelectHeader(props: PropsI): JSX.Element {
 
   return (
     <div className={classes.root}>
-      <button type="button" onClick={handleClickSubMonths}>
+      <button
+        type="button"
+        className={classes.arrowButton}
+        onClick={handleClickSubMonths}
+        data-testid="selectheader-submonth-btn"
+      >
         <ArrowLeftIcon />
       </button>
 
@@ -49,6 +63,7 @@ export default function SelectHeader(props: PropsI): JSX.Element {
         className={classes.numberInput}
         value={viewValue.getFullYear()}
         onChange={handleChangeYear}
+        data-testid="selectheader-input"
       />
 
       <SelectHeaderMonth
@@ -57,7 +72,12 @@ export default function SelectHeader(props: PropsI): JSX.Element {
         locale={locale}
       />
 
-      <button type="button" onClick={handleClickAddMonths}>
+      <button
+        type="button"
+        className={classes.arrowButton}
+        onClick={handleClickAddMonths}
+        data-testid="selectheader-addmonth-btn"
+      >
         <ArrowRightIcon />
       </button>
     </div>

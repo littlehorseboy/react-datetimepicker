@@ -27,7 +27,7 @@ interface PropsI {
   locale?: string;
 }
 
-export default function DatePicker(props: PropsI): JSX.Element {
+export default function DateTimePicker(props: PropsI): JSX.Element {
   const classes = useStyles();
 
   const { value, locale = navigator.language } = props;
@@ -63,6 +63,7 @@ export default function DatePicker(props: PropsI): JSX.Element {
         readOnly
         value={inputValue ? format(inputValue, 'yyyy/MM/dd HH:mm') : ''}
         onClick={handleOpenPopover}
+        data-testid="datetimepicker-input"
       />
 
       <Popover
