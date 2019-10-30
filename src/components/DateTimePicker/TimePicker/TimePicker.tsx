@@ -60,6 +60,7 @@ export default function TimePicker(props: PropsI): JSX.Element {
         readOnly
         value={inputValue ? format(inputValue, 'HH:mm') : ''}
         onClick={handleOpenPopover}
+        data-testid="timepicker-input"
       />
 
       <Popover
@@ -83,6 +84,7 @@ export default function TimePicker(props: PropsI): JSX.Element {
               max={23}
               value={inputValue ? format(inputValue, 'HH') : ''}
               onChange={handleChangeSetHour}
+              data-testid="timepicker-hourinput"
             />
 
             <span>:</span>
@@ -93,6 +95,7 @@ export default function TimePicker(props: PropsI): JSX.Element {
               max={59}
               value={inputValue ? format(inputValue, 'mm') : ''}
               onChange={handleChangeSetMinute}
+              data-testid="timepicker-minuteinput"
             />
           </div>
         </div>

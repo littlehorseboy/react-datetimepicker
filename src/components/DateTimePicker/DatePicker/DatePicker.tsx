@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { format, setHours, setMinutes } from 'date-fns';
-import { makeStyles } from '@material-ui/core/styles';
+import { format } from 'date-fns';
 import Popover from '@material-ui/core/Popover';
 import SelectHeader from '../SelectHeader/SelectHeader';
 import DaysHeader from '../DaysHeader/DaysHeader';
@@ -35,6 +34,7 @@ export default function DatePicker(props: PropsI): JSX.Element {
         readOnly
         value={inputValue ? format(inputValue, 'yyyy/MM/dd') : ''}
         onClick={handleOpenPopover}
+        data-testid="datepicker-input"
       />
 
       <Popover

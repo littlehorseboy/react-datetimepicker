@@ -16,7 +16,7 @@ test('DateTimePicker render，不指定 value，input 內容為空', async () =>
   expect(node).toBeEmpty();
 });
 
-test('DateTimePicker render，指定 new Date，input 內容為目前時間的 yyyy/MM/dd HH:mm', async () => {
+test('DateTimePicker render，指定 value 的值為 new Date，input 內容為目前時間的 yyyy/MM/dd HH:mm', async () => {
   const { getByTestId } = render(<DateTimePicker value={new Date()} />);
 
   const node = await waitForElement(() => getByTestId('datetimepicker-input'));
