@@ -1,5 +1,7 @@
 import React from 'react';
-import { format, setDate } from 'date-fns';
+import {
+  format, setDate, setHours, setMinutes,
+} from 'date-fns';
 /* eslint-disable import/no-extraneous-dependencies */
 import { render, waitForElement, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
@@ -80,7 +82,7 @@ test('點擊切換上個月份的按鈕 2 次，下拉選單的月份會是現�
   expect(node).toHaveValue((new Date().getMonth() - 2).toString());
 });
 
-test('點擊本月的第 3 個按鈕，檢查 value 的日期是否成功改變為 3', async () => {
+test('點擊日期數字的第 3 個按鈕，檢查 value 的日期是否成功改變為 3', async () => {
   const { getByTestId, getAllByTestId } = render(<DateTimePicker value={new Date()} />);
 
   const input = await waitForElement(() => getByTestId('datetimepicker-input'));
@@ -92,4 +94,32 @@ test('點擊本月的第 3 個按鈕，檢查 value 的日期是否成功改變�
   fireEvent.click(btns[2]);
 
   expect(input).toHaveValue(format(setDate(new Date(), 3), 'yyyy/MM/dd HH:mm'));
+});
+
+test('時間的小時 input 的值改動後，value 也會跟著變動', async () => {
+  const { getByTestId } = render(<DateTimePicker value={new Date()} />);
+
+  const input = await waitForElement(() => getByTestId('datetimepicker-input'));
+
+  fireEvent.click(input);
+
+  const hourInput = await waitForElement(() => getByTestId('datetimepicker-hourinput'));
+
+  fireEvent.change(hourInput, { target: { value: 20 } });
+
+  expect(input).toHaveValue(format(setHours(new Date(), 20), 'yyyy/MM/dd HH:mm'));
+});
+
+test('時間的分鐘 input 的值改動後，value 也會跟著變動', async () => {
+  const { getByTestId } = render(<DateTimePicker value={new Date()} />);
+
+  const input = await waitForElement(() => getByTestId('datetimepicker-input'));
+
+  fireEvent.click(input);
+
+  const minuteInput = await waitForElement(() => getByTestId('datetimepicker-minuteinput'));
+
+  fireEvent.change(minuteInput, { target: { value: 55 } });
+
+  expect(input).toHaveValue(format(setMinutes(new Date(), 55), 'yyyy/MM/dd HH:mm'));
 });

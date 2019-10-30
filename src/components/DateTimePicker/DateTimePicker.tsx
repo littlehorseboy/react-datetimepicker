@@ -100,6 +100,7 @@ export default function DateTimePicker(props: PropsI): JSX.Element {
               max={23}
               value={inputValue ? format(inputValue, 'HH') : ''}
               onChange={handleChangeSetHour}
+              data-testid="datetimepicker-hourinput"
             />
 
             <span>:</span>
@@ -110,6 +111,7 @@ export default function DateTimePicker(props: PropsI): JSX.Element {
               max={59}
               value={inputValue ? format(inputValue, 'mm') : ''}
               onChange={handleChangeSetMinute}
+              data-testid="datetimepicker-minuteinput"
             />
           </div>
         </div>
